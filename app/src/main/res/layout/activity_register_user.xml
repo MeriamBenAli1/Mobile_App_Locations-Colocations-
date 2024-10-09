@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_register_user_parent_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_background"
+    tools:context=".ManualLoginActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/registerTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/sign_up_with_email"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/header_text_size"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/register_user_screen_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:onClick="onClick"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_backward" />
+
+        <View
+            android:id="@+id/topDivider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/light_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/registerTitle" />
+
+        <ImageView
+            android:id="@+id/illustration"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/topDivider"
+            app:srcCompat="@drawable/login_illustration" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/register_user_title_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:gravity="center"
+            android:text="@string/sign_up_app"
+            android:textColor="@color/dark_gray"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/illustration" />
+
+        <FrameLayout
+            android:id="@+id/register_name_frame"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/register_user_title_text_view">
+
+            <EditText
+                android:id="@+id/register_name_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:background="@drawable/rounded_login_edit_text_states"
+                android:drawableStart="@drawable/ic_face"
+                android:drawablePadding="15dp"
+                android:hint="@string/name"
+                android:imeOptions="actionNext"
+                android:inputType="textCapWords"
+                android:padding="@dimen/margin_fifteen"
+                android:textAlignment="viewStart"
+                android:textColor="@color/dark_gray"
+                android:textColorHint="@color/edit_text_hint"
+                android:textSize="@dimen/text_size_sixteen"
+                app:drawableTint="@color/login_edittext_icon" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/register_username_frame"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_twenty_five"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/register_name_frame">
+
+            <EditText
+                android:id="@+id/register_username_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/username"
+                app:drawableTint="@color/login_edittext_icon"
+                android:drawableStart="@drawable/ic_outline_person"
+                android:drawablePadding="15dp"
+                android:imeOptions="actionNext"
+                android:textColor="@color/dark_gray"
+                android:layout_gravity="start"
+                android:textAlignment="viewStart"
+                android:inputType="textEmailAddress"
+                android:textColorHint="@color/edit_text_hint"
+                android:textSize="@dimen/text_size_sixteen"
+                android:padding="@dimen/margin_fifteen"
+                android:background="@drawable/rounded_login_edit_text_states"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/register_user_email_frame"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_twenty_five"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/register_username_frame">
+
+            <EditText
+                android:id="@+id/register_email_id_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email_id"
+                app:drawableTint="@color/login_edittext_icon"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="15dp"
+                android:imeOptions="actionNext"
+                android:textColor="@color/dark_gray"
+                android:inputType="textEmailAddress"
+                android:layout_gravity="start"
+                android:textAlignment="viewStart"
+                android:textColorHint="@color/edit_text_hint"
+                android:textSize="@dimen/text_size_sixteen"
+                android:padding="@dimen/margin_fifteen"
+                android:background="@drawable/rounded_login_edit_text_states"/>
+
+        </FrameLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/register_user_password_frame"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_twenty"
+            android:background="@drawable/rounded_login_edit_text_states"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/register_user_email_frame">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/register_user_show_hide_password_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="15dp"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:text="@string/show"
+                android:textColor="@color/login_edittext_icon"
+                android:textSize="@dimen/text_size_normal"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/register_user_password_edit_text"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/register_user_password_edit_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:background="@null"
+                app:drawableTint="@color/login_edittext_icon"
+                android:drawableStart="@drawable/ic_outline_lock"
+                android:drawablePadding="15dp"
+                android:hint="@string/password"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:padding="@dimen/margin_fifteen"
+                android:textAlignment="viewStart"
+                android:textColor="@color/dark_gray"
+                android:textColorHint="@color/edit_text_hint"
+                android:textSize="@dimen/text_size_sixteen"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/register_user_show_hide_password_text_view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/register_user_button"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:background="@drawable/rounded_login_button_states"
+            android:enabled="false"
+            android:fontFamily="@font/roboto_bold"
+            android:onClick="onClick"
+            android:text="@string/sign_up"
+            android:textColor="@color/login_button_text_color"
+            android:textSize="@dimen/text_size_sixteen"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_user_password_frame" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include
+        android:id="@+id/register_user_sliding_progress_indicator"
+        layout="@layout/sliding_progress_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</FrameLayout>

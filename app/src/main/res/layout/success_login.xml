@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="@dimen/margin_ten"
+        app:cardElevation="@dimen/margin_sixteen"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/relativelayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/success_dialog_icon"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/ic_check_circle_outline"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relativelayout1"
+                android:paddingHorizontal="15dp"
+                android:paddingTop="15dp">
+
+                <TextView
+                    android:id="@+id/success_dialog_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/margin_sixteen"
+                    android:paddingRight="@dimen/margin_sixteen"
+                    android:text="Login Successful"
+                    android:textAlignment="center"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/header_text_size" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/success_dialog_message"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="25dp">
+
+                    <Button
+                        android:id="@+id/success_dialog_ok_button"
+                        android:layout_width="@dimen/success_dialog_button_with"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/rounded_background_blue"
+                        android:paddingTop="@dimen/default_margin"
+                        android:paddingBottom="@dimen/default_margin"
+                        android:text="OK"
+                        android:textColor="@color/white_color_text" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

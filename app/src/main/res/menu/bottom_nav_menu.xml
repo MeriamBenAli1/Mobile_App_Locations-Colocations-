@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/action_home"
+        android:title="@string/home"
+        android:icon="@drawable/ic_home_24"
+        app:showAsAction="always"/>
+    <item android:id="@+id/action_chat"
+        android:title="@string/chat"
+        android:icon="@drawable/ic_chat_24"
+        app:showAsAction="always"/>
+    <item android:id="@+id/action_upload_product"
+        android:title=""
+        app:showAsAction="always"/>
+    <item android:id="@+id/my_ads"
+        android:title="@string/my_ads"
+        android:icon="@drawable/ic_my_ads"
+        app:showAsAction="always"/>
+    <item android:id="@+id/action_settings"
+        android:title="@string/account"
+        android:icon="@drawable/ic_account_24"
+        app:showAsAction="always"/>
+</menu>
