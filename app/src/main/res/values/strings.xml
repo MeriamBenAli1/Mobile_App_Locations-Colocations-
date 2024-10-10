@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">MobileAppProject-TEKDev-5SAE3</string>
+    <string-array name="publication_types">
+        <item>Type de publication</item>
+        <item>Annonce</item>
+        <item>Événement</item>
+        <item>Offre</item>
+        <item>Discussion</item>
+    </string-array>
 </resources>

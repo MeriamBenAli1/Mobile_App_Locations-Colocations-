@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/blog"
+    tools:context=".MainActivity">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Publications"
+            android:textSize="24sp"
+            android:layout_gravity="center" />
+        <Spinner
+            android:id="@+id/spinnerPublicationType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/publication_types"
+            android:layout_marginTop="8dp"></Spinner>
+        <EditText
+            android:id="@+id/editTextPublication"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ecrivez votre publication ici " />
+
+        <!-- Bouton pour importer une image -->
+        <Button
+            android:id="@+id/buttonImportImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Importer une image"
+            android:layout_gravity="center" />
+
+        <Button
+            android:id="@+id/buttonPost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Publier"
+            android:layout_gravity="center" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewPosts"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
