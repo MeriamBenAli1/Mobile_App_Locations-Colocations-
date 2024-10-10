@@ -1,6 +1,9 @@
 package com.example.mobileappproject_tekdev_5sae3;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +22,28 @@ public class MainActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        // Récupération des boutons
+        Button btnGoToPublish = findViewById(R.id.btnGoToPublish);
+        Button btnGoToSearch = findViewById(R.id.btnGoToSearch);
+
+        // Action pour le bouton de publication
+        btnGoToPublish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, PublishAdActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Action pour le bouton de recherche
+        btnGoToSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SearchAdActivity.class);
+                startActivity(intent);
+            }
         });
     }
 }
