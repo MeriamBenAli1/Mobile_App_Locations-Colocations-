@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/chat_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Section pour afficher le nom de la personne et son statut en ligne -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:background="#FFFFFF"
+            android:elevation="4dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_vertical">
+
+            <!-- Image de l'avatar -->
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_user_avatar"
+                android:layout_marginEnd="10dp"
+                android:contentDescription="User Avatar"
+                android:scaleType="centerCrop" />
+
+            <!-- Conteneur vertical pour le nom et le statut -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Nom de la personne -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ben Ali Meriam"
+                    android:textColor="#0D47A1"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <!-- Statut en ligne avec icône -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="4dp">
+
+                    <!-- Petit cercle bleu pour indiquer le statut en ligne -->
+                    <View
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:background="@drawable/circle_blue"
+                        android:layout_marginEnd="4dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="En ligne"
+                        android:textColor="#4CAF50"
+                        android:textSize="14sp"
+                        android:textStyle="normal" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <!-- Espace pour pousser le logo vers la droite -->
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <!-- Image du logo de l'application à l'autre extrémité -->
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="10dp"
+                android:contentDescription="App Logo"
+                android:scaleType="centerCrop"
+                android:src="@drawable/logo_background" />
+        </LinearLayout>
+
+        <!-- Zone de messages avec ScrollView pour le défilement -->
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:id="@+id/messages_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Messages de l'utilisateur -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/message_outgoing"
+                    android:padding="10dp"
+                    android:text="Bonjour, la maison est disponible à la location !"
+                    android:textColor="#FFFFFF"
+                    android:layout_gravity="end"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Messages de l'autre utilisateur -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/message_incoming"
+                    android:padding="10dp"
+                    android:text="Bonjour, pouvez-vous me donner plus d'informations ?"
+                    android:textColor="#000000"
+                    android:layout_gravity="start"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/message_outgoing"
+                    android:padding="10dp"
+                    android:text="La maison est située à Ariana, près de l'ESPRIT."
+                    android:textColor="#FFFFFF"
+                    android:layout_gravity="end"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/message_incoming"
+                    android:padding="10dp"
+                    android:text="Quel est le prix du loyer ?"
+                    android:textColor="#000000"
+                    android:layout_gravity="start"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/message_outgoing"
+                    android:padding="10dp"
+                    android:text="Le loyer est de 1200 TND par mois."
+                    android:textColor="#FFFFFF"
+                    android:layout_gravity="end"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/message_incoming"
+                    android:padding="10dp"
+                    android:text="Y a-t-il un jardin ?"
+                    android:textColor="#000000"
+                    android:layout_gravity="start"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/message_outgoing"
+                    android:padding="10dp"
+                    android:text="Oui, il y a un jardin et une terrasse."
+                    android:textColor="#FFFFFF"
+                    android:layout_gravity="end"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/message_incoming"
+                    android:padding="10dp"
+                    android:text="Merci pour les informations !"
+                    android:textColor="#000000"
+                    android:layout_gravity="start"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/message_outgoing"
+                    android:padding="10dp"
+                    android:text="Dites-moi si vous souhaitez visiter."
+                    android:textColor="#FFFFFF"
+                    android:layout_gravity="end"
+                    android:layout_marginBottom="8dp" />
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- Zone de saisie de message -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:background="#FFFFFF"
+            android:elevation="4dp"
+            android:gravity="center_vertical">
+
+            <!-- Champ de saisie du message -->
+            <EditText
+                android:id="@+id/message_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Écrire un message..."
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:background="@drawable/message_input_background"
+                android:padding="10dp"
+                android:inputType="textCapSentences" />
+
+            <!-- Bouton pour envoyer le message -->
+            <ImageButton
+                android:id="@+id/send_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_send"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Envoyer le message" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>
