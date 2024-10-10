@@ -22,5 +22,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // Ajouter le bouton pour ouvrir les conversations
+        Button btnOpenConversations = findViewById(R.id.btn_open_conversations);
+        btnOpenConversations.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Ouvrir ConversationsActivity
+                Intent intent = new Intent(MainActivity.this, ConversationsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
