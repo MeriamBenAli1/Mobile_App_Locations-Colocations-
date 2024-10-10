@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -17,10 +18,63 @@
         android:layout_height="wrap_content"
         android:hint="Prix maximum" />
 
+    <EditText
+        android:id="@+id/editNumRoommates"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre de colocataires" />
+
+    <EditText
+        android:id="@+id/editNumBedrooms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre de chambres" />
+
+    <Button
+        android:id="@+id/btnSelectAmenities"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sélectionner les équipements"
+        android:backgroundTint="@android:color/holo_blue_light" />
+
+
+    <EditText
+        android:id="@+id/editArrivalDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Date d'arrivée"
+        android:focusable="false" />
+
+    <EditText
+        android:id="@+id/editDepartureDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Date de départ"
+        android:focusable="false" />
+
+    <Button
+        android:id="@+id/btnSelectArrivalDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sélectionner la date d'arrivée"
+        android:backgroundTint="@android:color/holo_blue_light" />
+
+
+    <Button
+        android:id="@+id/btnSelectDepartureDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sélectionner la date de départ"
+        android:backgroundTint="@android:color/holo_blue_light" />
+
+
     <Button
         android:id="@+id/btnSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Rechercher" />
+        android:text="Rechercher"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@android:color/holo_blue_light" />
+
 
 </LinearLayout>

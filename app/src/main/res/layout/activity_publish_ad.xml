@@ -35,12 +35,16 @@
         android:id="@+id/btnSelectImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sélectionner une image" />
+        android:text="Sélectionner une image"
+    android:backgroundTint="@android:color/holo_blue_light" />
+
 
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Soumettre l'annonce" />
+        android:text="Soumettre l'annonce"
+        android:backgroundTint="@android:color/holo_blue_light" />
+
 
 </LinearLayout>

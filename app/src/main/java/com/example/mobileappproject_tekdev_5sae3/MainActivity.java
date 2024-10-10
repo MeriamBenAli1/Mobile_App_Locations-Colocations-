@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         btnGoToPublish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, PublishAdActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, PublishAdActivity.class); //passer à l'activité de publication
+                startActivity(intent);    // Lancement de l'activité
             }
         });
 
@@ -41,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
         btnGoToSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SearchAdActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, SearchAdActivity.class);  //passer à l'activité de recherche
+                startActivity(intent);        // Lancement de l'activité
             }
         });
     }
