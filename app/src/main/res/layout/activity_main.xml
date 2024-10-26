@@ -14,7 +14,7 @@
         android:layout_height="200dp"
         android:layout_marginBottom="16dp"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/_62537598_568085348938282_4911340879328429583_n" />
+        app:srcCompat="@drawable/png" />
 
     <Button
         android:id="@+id/btnGoToPublish"
@@ -30,5 +30,14 @@
         android:layout_height="wrap_content"
         android:text="Rechercher une annonce"
         android:backgroundTint="@android:color/holo_blue_light" />
+
+    <!-- RecyclerView for displaying ads -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewAds"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:nestedScrollingEnabled="false"
+        android:layout_marginTop="16dp"/>
 
 </LinearLayout>

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="16dp">
 
     <EditText
@@ -15,36 +14,63 @@
         android:id="@+id/editDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Description" />
+        android:hint="Description"
+        android:layout_below="@id/editTitle"
+        android:layout_marginTop="8dp" />
 
     <EditText
         android:id="@+id/editPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Prix" />
+        android:hint="Prix"
+        android:inputType="number"
+        android:layout_below="@id/editDescription"
+        android:layout_marginTop="8dp" />
+
+    <EditText
+        android:id="@+id/editDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Date"
+        android:focusable="false"
+    android:layout_below="@id/editPrice"
+    android:layout_marginTop="8dp" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginTop="16dp"
+        android:layout_below="@id/editDate"
+        android:layout_marginTop="8dp"
+        android:contentDescription="Image de l'annonce"
         android:scaleType="centerCrop"
-        android:contentDescription="Image sélectionnée" />
+        android:background="#ddd" />
 
     <Button
         android:id="@+id/btnSelectImage"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/imageView"
+        android:layout_marginTop="8dp"
         android:text="Sélectionner une image"
-    android:backgroundTint="@android:color/holo_blue_light" />
-
+        android:backgroundTint="@android:color/holo_blue_light" />
 
     <Button
         android:id="@+id/btnSubmit"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Soumettre l'annonce"
+        android:layout_below="@id/btnSelectImage"
+        android:layout_marginTop="8dp"
+        android:text="Publier l'annonce"
         android:backgroundTint="@android:color/holo_blue_light" />
 
+    <Button
+        android:id="@+id/btnViewAds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnSubmit"
+        android:layout_marginTop="8dp"
+        android:text="Voir les annonces"
+        android:backgroundTint="@android:color/holo_blue_light" />
 
-</LinearLayout>
+</RelativeLayout>
