@@ -1,4 +1,4 @@
-package com.example.mobileappproject_tekdev_5sae3;
+package com.example.mobileappproject_tekdev_5sae3.ChatsController;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.mobileappproject_tekdev_5sae3.R;
 
 public class ConversationsAdapter extends ArrayAdapter<String> {
 

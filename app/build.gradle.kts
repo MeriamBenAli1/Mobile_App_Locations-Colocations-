@@ -33,11 +33,16 @@ android {
 
 dependencies {
 
+    // Libraries AndroidX et autres
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+
+    // Room dependencies
+    implementation(libs.room.common)
+    implementation(libs.room.runtime)
+    annotationProcessor(libs.room.compiler) // Utilisé pour générer les classes Room via Java
+    // SQLite dependency
+    implementation(libs.sqlite)
 }

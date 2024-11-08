@@ -1,9 +1,10 @@
-package com.example.mobileappproject_tekdev_5sae3;
-
+package com.example.mobileappproject_tekdev_5sae3.ChatsController;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.mobileappproject_tekdev_5sae3.R;
 
 public class ConversationsActivity extends AppCompatActivity {
 
