@@ -4,12 +4,13 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 @Entity(tableName = "annonces")
-public class Annonce {
+public class Annonce{
     @PrimaryKey(autoGenerate = true)
     private int id;
 

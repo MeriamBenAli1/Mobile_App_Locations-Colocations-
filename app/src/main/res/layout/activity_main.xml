@@ -1,43 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:gravity="center">
+    tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginBottom="16dp"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/png" />
+    <!-- Button to trigger fragment load -->
 
-    <Button
-        android:id="@+id/btnGoToPublish"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Publier une annonce"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="@android:color/holo_blue_light" />
 
-    <Button
-        android:id="@+id/btnGoToSearch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Rechercher une annonce"
-        android:backgroundTint="@android:color/holo_blue_light" />
-
-    <!-- RecyclerView for displaying ads -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewAds"
+    <!-- Container to hold the Fragment -->
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:nestedScrollingEnabled="false"
-        android:layout_marginTop="16dp"/>
-
-</LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/btn_open_chat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="32dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

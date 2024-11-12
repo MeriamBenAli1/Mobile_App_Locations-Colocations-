@@ -1,6 +1,7 @@
 package com.example.mobileappproject_tekdev_5sae3;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,10 +60,30 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.AdsViewHolder> i
                 .into(holder.imageView);
 
         holder.itemView.setOnClickListener(v -> adClickListener.onAdClick(annonce));
-        // Set click listener for edit button
-        holder.editButton.setOnClickListener(v -> adClickListener.onAdClick(annonce));
 
-        // Set click listener for delete button
+        // Set click listener for the edit button
+        holder.editButton.setOnClickListener(v -> {
+            // Prepare the data to pass to the fragment
+            Bundle bundle = new Bundle();
+            bundle.putInt("adId", annonce.getId());
+            bundle.putString("adTitle", annonce.getTitle());
+            bundle.putString("adDescription", annonce.getDescription());
+            bundle.putInt("adPrice", annonce.getPrice());
+            bundle.putString("adDate", annonce.getFormattedDate());  // Format the date as a string
+            bundle.putString("adImageUri", annonce.getImageUri());
+
+            // Create a new EditAdFragment instance and set the arguments
+            EditAdFragment editAdFragment = new EditAdFragment();
+            editAdFragment.setArguments(bundle);
+
+            // Navigate to the fragment (replace the current fragment or use a new one)
+            ((MainActivity) context).getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, editAdFragment)
+                    .addToBackStack(null)  // Optional, allows the user to navigate back
+                    .commit();
+        });
+
+        // Set click listener for the delete button
         holder.deleteButton.setOnClickListener(v -> {
             // Notify the listener to delete the ad
             adClickListener.onAdDelete(annonce);

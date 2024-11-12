@@ -3,27 +3,20 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <!-- Title EditText -->
     <EditText
         android:id="@+id/editTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Titre de l'annonce"
-        android:padding="10dp"
-     />
+        android:hint="Titre de l'annonce" />
 
-    <!-- Description EditText -->
     <EditText
         android:id="@+id/editDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Description"
         android:layout_below="@id/editTitle"
-        android:layout_marginTop="8dp"
-        android:padding="10dp"
-        />
+        android:layout_marginTop="8dp" />
 
-    <!-- Price EditText -->
     <EditText
         android:id="@+id/editPrice"
         android:layout_width="match_parent"
@@ -31,11 +24,8 @@
         android:hint="Prix"
         android:inputType="number"
         android:layout_below="@id/editDescription"
-        android:layout_marginTop="8dp"
-        android:padding="10dp"
-     />
+        android:layout_marginTop="8dp" />
 
-    <!-- Date EditText -->
     <EditText
         android:id="@+id/editDate"
         android:layout_width="match_parent"
@@ -43,11 +33,8 @@
         android:hint="Date"
         android:focusable="false"
         android:layout_below="@id/editPrice"
-        android:layout_marginTop="8dp"
-        android:padding="10dp"
-       />
+        android:layout_marginTop="8dp" />
 
-    <!-- ImageView for displaying the image -->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
@@ -58,39 +45,31 @@
         android:scaleType="centerCrop"
         android:background="#ddd" />
 
-    <!-- Button for selecting image -->
     <Button
         android:id="@+id/btnSelectImage"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/imageView"
         android:layout_marginTop="8dp"
         android:text="Sélectionner une image"
-        android:backgroundTint="@android:color/holo_blue_light"
+        android:backgroundTint="@android:color/holo_blue_light" />
 
-        android:padding="12dp"/>
-
-    <!-- Button for submitting the ad -->
     <Button
         android:id="@+id/btnSubmit"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/btnSelectImage"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="Publier l'annonce"
-        android:backgroundTint="@android:color/holo_blue_light"
+        android:backgroundTint="@android:color/holo_green_light" />
 
-        android:padding="12dp"/>
-
-    <!-- Button for viewing ads -->
     <Button
-        android:id="@+id/btnViews"
-        android:layout_width="match_parent"
+        android:id="@+id/btnViewAd"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Voir les annonces"
         android:layout_below="@id/btnSubmit"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="@android:color/holo_blue_light"
-        android:padding="12dp"/>
+        android:layout_marginTop="16dp"
+        android:text="Voir les annonces"
+        android:backgroundTint="@android:color/holo_orange_light" />
 
 </RelativeLayout>
