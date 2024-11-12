@@ -1,10 +1,12 @@
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="16dp"
-    app:cardElevation="4dp"
-    app:cardCornerRadius="8dp">
+    app:cardElevation="8dp"
+    app:cardCornerRadius="12dp"
+    android:background="@android:color/white"> <!-- Set a white background for the card -->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,49 +19,71 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:scaleType="centerCrop" />
-
         <TextView
             android:id="@+id/adTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#333333" />
 
         <TextView
             android:id="@+id/adDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp" />
+            android:layout_marginTop="4dp"
+            android:textColor="#555555"
+            android:textSize="16sp"
+            android:lineSpacingExtra="2dp" /> <!-- Extra line spacing for better readability -->
 
         <TextView
             android:id="@+id/adPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textSize="16sp"
-            android:textStyle="italic" />
+            android:layout_marginTop="8dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#4CAF50"
+        android:background="@drawable/rounded_corners_background"
+        android:padding="8dp"
+        android:layout_gravity="start" />
 
         <TextView
             android:id="@+id/adDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/darker_gray" />
+            android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:layout_marginTop="4dp" />
 
-        <!-- Bouton Modifier -->
-        <Button
-            android:id="@+id/editButton"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Edit"
-            android:backgroundTint="@android:color/holo_blue_light" />
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:gravity="end"> <!-- Align buttons to the end -->
 
-        <!-- Bouton Supprimer -->
-        <Button
-            android:id="@+id/deleteButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Supprimer"
-            android:backgroundTint="@android:color/holo_blue_light" />
+            <!-- Modifier Button -->
+            <Button
+                android:id="@+id/editButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:backgroundTint="@android:color/holo_blue_light"
+                android:textColor="@android:color/white"
+                android:padding="8dp"
+                android:layout_marginEnd="8dp" />
+
+            <!-- Supprimer Button -->
+            <Button
+                android:id="@+id/deleteButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Supprimer"
+                android:backgroundTint="@android:color/holo_red_dark"
+                android:textColor="@android:color/white"
+                android:padding="8dp" />
+        </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
