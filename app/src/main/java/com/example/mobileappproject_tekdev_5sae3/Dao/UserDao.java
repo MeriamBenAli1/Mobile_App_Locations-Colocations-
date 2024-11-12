@@ -17,7 +17,8 @@ public interface UserDao {
     void updateUser(User user);
     @Query("SELECT * FROM user WHERE email = :email LIMIT 1")
     User getUserByEmail(String email);
-
+    @Query("SELECT name FROM user WHERE email = :email LIMIT 1")
+    String getUserNameByEmail(String email);
     @Query("SELECT COUNT(*) FROM user WHERE email = :email AND password = :password")
     int isValidUser(String email, String password);
 

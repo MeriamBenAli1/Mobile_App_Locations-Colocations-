@@ -112,6 +112,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         if (userCount > 0) {
                             userDao.logInUser(email);
+                            String name = userDao.getUserNameByEmail(email);
                             // Once login is successful, switch back to the main thread to handle UI
                             runOnUiThread(new Runnable() {
                                 @Override
@@ -119,6 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                                     // Save user info in SharedPreferences
                                     SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString("name", name);
                                     editor.putString("email", email);
                                     editor.putBoolean("isLoggedIn", true);
                                     editor.apply();
