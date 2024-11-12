@@ -42,7 +42,12 @@ dependencies {
     // Room dependencies
     implementation(libs.room.common)
     implementation(libs.room.runtime)
+    implementation(libs.recyclerview)
     annotationProcessor(libs.room.compiler) // Utilisé pour générer les classes Room via Java
     // SQLite dependency
     implementation(libs.sqlite)
+    // Fragment dependency pour Java
+    implementation("androidx.fragment:fragment:1.5.5") // Assure-toi de vérifier la dernière version stable
+    implementation(  libs.recyclerview)  // Add this line
+    // Other dependencies
 }
