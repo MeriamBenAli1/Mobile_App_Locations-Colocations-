@@ -26,4 +26,7 @@ public interface PublicationDao {
     @Query("SELECT * FROM publications")
     List<Publication> getAllPublications();
 
+    @Query("UPDATE publications SET likeCount = :likeCount WHERE id = :publicationId")
+    void updateLikeCount(int publicationId, int likeCount);
+
 }

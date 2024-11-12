@@ -19,7 +19,11 @@ public class Publication {
     private int userId;
     private String  datePublication;
     private String imageUri;
-    public Publication(String titre, String description, String type, int userId,String  datePublication, String imageUri) {
+    private int likeCount;
+
+    public Publication(String titre, String description, String type,
+                       int userId,String  datePublication,
+                       String imageUri) {
         this.titre = titre;
         this.description = description;
         this.type = type;
@@ -60,5 +64,12 @@ public class Publication {
     public String getImageUri() { return imageUri; }
     public void setImageUri(String imageUri) { this.imageUri = imageUri; }
 
+    public int getLikeCount() {
+        return likeCount;
+    }
+
+    public void setLikeCount(int likeCount) {
+        this.likeCount = likeCount;
+    }
 }
 

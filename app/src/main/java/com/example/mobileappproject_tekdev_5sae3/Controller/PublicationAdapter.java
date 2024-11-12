@@ -49,6 +49,8 @@ public class PublicationAdapter extends RecyclerView.Adapter<PublicationAdapter.
         holder.descriptionTextView.setText(publication.getDescription());
         holder.typeTextView.setText(publication.getType());
         holder.dateTextView.setText(publication.getDatePublication());
+        holder.likeCountTextView.setText(String.valueOf(publication.getLikeCount()));
+
         // Gestion de l'image
         String imageUriString = publication.getImageUri();
         if (imageUriString != null && !imageUriString.isEmpty()) {
@@ -61,6 +63,14 @@ public class PublicationAdapter extends RecyclerView.Adapter<PublicationAdapter.
             Log.d("PublicationAdapter", "Delete button clicked for publication: " + publication.getTitre());
 
             deleteListener.onPublicationDelete(publication);
+        });
+        holder.buttonLike.setOnClickListener(v -> {
+            int newLikeCount = publication.getLikeCount() + 1;
+            publication.setLikeCount(newLikeCount);
+            holder.likeCountTextView.setText(String.valueOf(newLikeCount));
+
+            // Mise à jour dans la base de données
+            new Thread(() -> publicationDao.updateLikeCount(publication.getId(), newLikeCount)).start();
         });
 
     }
@@ -89,7 +99,7 @@ public class PublicationAdapter extends RecyclerView.Adapter<PublicationAdapter.
         ImageButton deleteButton;
         TextView dateTextView;
         ImageView imageView;
-
+        TextView likeCountTextView;
         public PublicationViewHolder(@NonNull View itemView) {
             super(itemView);
             titreTextView = itemView.findViewById(R.id.titreTextView);
@@ -99,6 +109,8 @@ public class PublicationAdapter extends RecyclerView.Adapter<PublicationAdapter.
             deleteButton = itemView.findViewById(R.id.deleteButton);
             buttonLike = itemView.findViewById(R.id.buttonLike);
             buttonComment = itemView.findViewById(R.id.buttonComment);
+            likeCountTextView = itemView.findViewById(R.id.likeCountTextView);
+
             imageView = itemView.findViewById(R.id.imageView);
         }
 

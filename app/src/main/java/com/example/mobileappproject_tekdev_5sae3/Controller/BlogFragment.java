@@ -1,7 +1,9 @@
 package com.example.mobileappproject_tekdev_5sae3.Controller;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +21,8 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.mobileappproject_tekdev_5sae3.Dao.PublicationDao;
@@ -37,30 +41,11 @@ public class BlogFragment extends Fragment {
     private Spinner spinnerPublicationType;
     private Button buttonPost;
     private PublicationDao publicationDao;
-
-    private static final int REQUEST_IMAGE_PICK = 1;
     private Button buttonImportImage;
     private ImageView imageViewImported;
     private Uri selectedImageUri;
 
-    // Utilisation de ActivityResultContracts pour la sélection d'image
-    private ActivityResultLauncher<Intent> imagePickerLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(), result -> {
-                if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
-                    selectedImageUri = result.getData().getData();
-                    if (selectedImageUri != null) {
-                        try {
-                            // Affichage de l'image dans l'ImageView
-                            imageViewImported.setImageURI(selectedImageUri);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            Toast.makeText(getActivity(), "Erreur lors de l'importation de l'image", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Toast.makeText(getActivity(), "Aucune image sélectionnée", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
+    private static final int REQUEST_IMAGE_PICK = 1;
 
     @Nullable
     @Override
@@ -70,54 +55,43 @@ public class BlogFragment extends Fragment {
         editTextPublication = view.findViewById(R.id.editTextPublication);
         spinnerPublicationType = view.findViewById(R.id.spinnerPublicationType);
         buttonPost = view.findViewById(R.id.buttonPost);
-
         buttonImportImage = view.findViewById(R.id.buttonImportImage);
         imageViewImported = view.findViewById(R.id.imageViewImported);
+
         AppDataBase db = AppDataBase.getInstance(getActivity().getApplicationContext());
         publicationDao = db.publicationDao();
 
-        // Définir le clic du bouton pour lancer l'importation d'image
+        // Demander des permissions si nécessaire
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_IMAGE_PICK);
+        }
+
+        // Ouvrir le sélecteur d'images
         buttonImportImage.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             intent.setType("image/*");
-            imagePickerLauncher.launch(intent);
+            startActivityForResult(intent, REQUEST_IMAGE_PICK);
         });
 
         buttonPost.setOnClickListener(v -> {
             String description = editTextPublication.getText().toString();
             String type = spinnerPublicationType.getSelectedItem().toString();
-            int userId = 1; // Changez cela en fonction de l'utilisateur actuel
-            // Vérifier que la description n'est pas vide et respecte les contraintes de longueur
+            int userId = 1; // Utilisez l'utilisateur actuel ici
+
             if (description.isEmpty()) {
                 editTextPublication.setError("La description ne peut pas être vide");
-                editTextPublication.requestFocus();
                 return;
             }
             if (description.length() < 10) {
-                editTextPublication.setError("La description doit contenir au moins 10 caractères");
-                editTextPublication.requestFocus();
-                return;
-            }
-            if (description.length() > 255) {
-                editTextPublication.setError("La description ne doit pas dépasser 255 caractères");
-                editTextPublication.requestFocus();
-                return;
-            }
-            // Vérifier les mots interdits
-            if (containsBadWords(description)) {
-                editTextPublication.setError("La description contient des mots inappropriés");
-                editTextPublication.requestFocus();
+                editTextPublication.setError("La description doit être plus longue");
                 return;
             }
 
-            // Vérifier que le type est valide (vous pouvez adapter la condition en fonction de votre cas)
-            if (type.equals("Type de publication")) { // Assurez-vous que "Choisir un type" est le texte par défaut
-                Toast.makeText(getActivity(), "Veuillez sélectionner un type de publication", Toast.LENGTH_SHORT).show();
-                return;
-            }
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
             String currentDate = sdf.format(new Date());
-            String imageUriString = (selectedImageUri != null) ? selectedImageUri.toString() : "";  // Utiliser une chaîne vide si aucune image
+            String imageUriString = selectedImageUri != null ? selectedImageUri.toString() : "";
 
             Publication publication = new Publication("New Post", description, type, userId, currentDate, imageUriString);
 
@@ -127,31 +101,30 @@ public class BlogFragment extends Fragment {
                 requireActivity().runOnUiThread(() -> {
                     Toast.makeText(getActivity(), "Publication ajoutée", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getActivity(), MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // Optionnel : nettoie la pile d'activités
                     startActivity(intent);
                     requireActivity().finish();
                 });
             }).start();
         });
 
-
-
-
         return view;
     }
-    private boolean containsBadWords(String text) {
-        // Liste des mots interdits (vous pouvez adapter cette liste)
-        String[] badWords = {"mot1", "mot2", "mot3"}; // Remplacez par les mots indésirables réels
 
-        // Convertir le texte en minuscule pour éviter les problèmes de casse
-        String lowerText = text.toLowerCase();
-
-        for (String badWord : badWords) {
-            if (lowerText.contains(badWord)) {
-                return true;
+    // Gestion de l'activité résultante pour récupérer l'image
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK && data != null) {
+            selectedImageUri = data.getData();
+            if (selectedImageUri != null) {
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), selectedImageUri);
+                    imageViewImported.setImageBitmap(bitmap);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getActivity(), "Erreur lors de l'importation de l'image", Toast.LENGTH_SHORT).show();
+                }
             }
         }
-        return false;
     }
-
 }
