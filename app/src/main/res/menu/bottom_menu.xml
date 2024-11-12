@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:title="home"
+        android:icon="@drawable/baseline_home_24"/>
+    <item
+        android:id="@+id/blog"
+        android:title="blog"
+        android:icon="@drawable/baseline_whatshot_24"/>
+
+    <item
+        android:id="@+id/fab"
+        android:title=""
+        android:enabled="false"/>
+
+    <item
+        android:id="@+id/sub"
+        android:title="Sub"
+        android:icon="@drawable/baseline_chat_24"/>
+    <item
+        android:id="@+id/lib"
+        android:title="Library"
+        android:icon="@drawable/baseline_location_searching_24"/>
+
+</menu>
