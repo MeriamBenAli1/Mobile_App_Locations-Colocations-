@@ -47,7 +47,16 @@
             android:padding="10dp"
             android:background="@drawable/spinner_background"
             android:entries="@array/publication_types"/>
-
+        <EditText
+            android:id="@+id/editTextPublication"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/edittext_background"
+            android:padding="12dp"
+            android:hint="Ecrivez votre publication ici"
+            android:textColor="@android:color/black" />
         <Button
             android:id="@+id/buttonImportImage"
             android:layout_width="match_parent"
@@ -67,16 +76,7 @@
             android:contentDescription="Image importée"
             android:scaleType="centerCrop" />
 
-        <EditText
-            android:id="@+id/editTextPublication"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/edittext_background"
-            android:padding="12dp"
-            android:hint="Ecrivez votre publication ici"
-            android:textColor="@android:color/black" />
+
 
         <Button
             android:id="@+id/buttonPost"
