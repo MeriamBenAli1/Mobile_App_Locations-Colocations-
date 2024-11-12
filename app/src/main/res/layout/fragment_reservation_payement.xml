@@ -8,7 +8,6 @@
     android:padding="16dp">
 
     <!-- TopBar / Toolbar -->
-
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar_payment"
         android:layout_width="match_parent"
@@ -128,12 +127,12 @@
             android:text="Card Number"
             android:textSize="18sp" />
 
-      <EditText
-    android:id="@+id/card_number"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="Numéro de carte"
-    android:padding="16dp" />
+        <EditText
+            android:id="@+id/card_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Numéro de carte"
+            android:padding="16dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -163,7 +162,8 @@
             android:hint="Code CVV"
             android:padding="16dp" />
 
-        <Button  android:id="@+id/nextStepButton"
+        <Button
+            android:id="@+id/nextStepButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -174,9 +174,5 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-
     </LinearLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
-

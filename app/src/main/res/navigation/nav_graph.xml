@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/reservationPaymentFragment">
+
+    <fragment
+        android:id="@+id/reservationPaymentFragment"
+        android:name="com.example.mobileappproject_tekdev_5sae3.ReservationPaymentFragment"
+        android:label="Reservation Payment">
+        <action
+            android:id="@+id/action_reservationPaymentFragment_to_reservationHistoryFragment"
+            app:destination="@id/reservationHistoryFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/reservationHistoryFragment"
+        android:name="com.example.mobileappproject_tekdev_5sae3.ReservationHistoryFragment"
+        android:label="Reservation History" />
+</navigation>

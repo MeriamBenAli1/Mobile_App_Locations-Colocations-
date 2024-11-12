@@ -1,19 +1,13 @@
 package com.example.mobileappproject_tekdev_5sae3;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
-
-
-import com.example.mobileappproject_tekdev_5sae3.dao.ReservationDao;
-import com.example.mobileappproject_tekdev_5sae3.database.AppDataBase;
-import com.example.mobileappproject_tekdev_5sae3.reservation.ReservationDetailsActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity {
-    private ReservationDao reservationDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,19 +18,28 @@ public class MainActivity extends AppCompatActivity {
         btnOpenChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ReservationDetailsActivity.class);
-                startActivity(intent);
+                // Start the fragment instead of an activity
+                ReservationDetailsFragment paymentFragment = new ReservationDetailsFragment();
+
+                // Pass necessary data as arguments (for example, reservation details)
+                Bundle bundle = new Bundle();
+                bundle.putString("firstName", "John");
+                bundle.putString("lastName", "Doe");
+                bundle.putString("email", "john.doe@example.com");
+                bundle.putString("phone", "1234567890");
+                bundle.putString("date", "2024-11-12");
+                bundle.putInt("guests", 2);
+                bundle.putInt("duration", 3);
+                bundle.putString("durationType", "nights");
+                bundle.putDouble("totalPrice", 300.0);
+                paymentFragment.setArguments(bundle);
+
+                // Load the fragment
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, paymentFragment);
+                transaction.addToBackStack(null); // Optional: adds fragment to back stack for navigation
+                transaction.commit();
             }
         });
-        // Obtenir une instance de la base de données
-        AppDataBase db = AppDataBase.getInstance(this);
-        reservationDao = db.reservationDao();
-
-        // Log pour vérifier l'instance de la base de données
-        Log.d("Database", "Instance de la base de données obtenue");
-
-
-
-
     }
 }
