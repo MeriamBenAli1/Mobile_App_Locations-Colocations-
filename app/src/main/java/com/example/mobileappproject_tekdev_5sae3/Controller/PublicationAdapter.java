@@ -45,7 +45,6 @@ public class PublicationAdapter extends RecyclerView.Adapter<PublicationAdapter.
     @Override
     public void onBindViewHolder(@NonNull PublicationViewHolder holder, int position) {
         Publication publication = publications.get(position);
-        holder.titreTextView.setText(publication.getTitre());
         holder.descriptionTextView.setText(publication.getDescription());
         holder.typeTextView.setText(publication.getType());
         holder.dateTextView.setText(publication.getDatePublication());
@@ -60,7 +59,7 @@ public class PublicationAdapter extends RecyclerView.Adapter<PublicationAdapter.
             holder.imageView.setImageResource(R.drawable.arn); // Assurez-vous que `default_image` est dans le dossier drawable
         }
         holder.deleteButton.setOnClickListener(v -> {
-            Log.d("PublicationAdapter", "Delete button clicked for publication: " + publication.getTitre());
+            Log.d("PublicationAdapter", "Delete button clicked for publication: " + publication.getId());
 
             deleteListener.onPublicationDelete(publication);
         });
@@ -102,7 +101,6 @@ public class PublicationAdapter extends RecyclerView.Adapter<PublicationAdapter.
         TextView likeCountTextView;
         public PublicationViewHolder(@NonNull View itemView) {
             super(itemView);
-            titreTextView = itemView.findViewById(R.id.titreTextView);
             descriptionTextView = itemView.findViewById(R.id.descriptionTextView);
             typeTextView = itemView.findViewById(R.id.typeTextView);
             dateTextView = itemView.findViewById(R.id.dateTextView);

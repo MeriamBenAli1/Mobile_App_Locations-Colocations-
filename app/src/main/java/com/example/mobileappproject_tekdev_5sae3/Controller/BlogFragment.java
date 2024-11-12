@@ -93,7 +93,7 @@ public class BlogFragment extends Fragment {
             String currentDate = sdf.format(new Date());
             String imageUriString = selectedImageUri != null ? selectedImageUri.toString() : "";
 
-            Publication publication = new Publication("New Post", description, type, userId, currentDate, imageUriString);
+            Publication publication = new Publication( description, type, userId, currentDate, imageUriString);
 
             new Thread(() -> {
                 publicationDao.insertPublication(publication);

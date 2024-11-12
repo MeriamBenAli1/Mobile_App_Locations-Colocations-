@@ -12,8 +12,6 @@ public class Publication {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
-
-    private String titre;
     private String description;
     private String type;
     private int userId;
@@ -21,10 +19,9 @@ public class Publication {
     private String imageUri;
     private int likeCount;
 
-    public Publication(String titre, String description, String type,
+    public Publication(String description, String type,
                        int userId,String  datePublication,
                        String imageUri) {
-        this.titre = titre;
         this.description = description;
         this.type = type;
         this.userId = userId;
@@ -35,15 +32,11 @@ public class Publication {
     public Publication() {
 
     }
-    @Ignore
-    public Publication(String titre) {
-        this.titre = titre;
-    }
+
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
-    public String getTitre() { return titre; }
-    public void setTitre(String titre) { this.titre = titre; }
+
 
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }

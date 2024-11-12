@@ -70,8 +70,8 @@
 
         <ImageView
             android:id="@+id/imageViewImported"
-            android:layout_width="374dp"
-            android:layout_height="154dp"
+            android:layout_width="350dp"
+            android:layout_height="95dp"
             android:layout_marginTop="16dp"
             android:contentDescription="Image importée"
             android:scaleType="centerCrop" />

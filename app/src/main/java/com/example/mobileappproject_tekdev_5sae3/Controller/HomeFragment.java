@@ -90,8 +90,7 @@ public class HomeFragment extends Fragment implements PublicationAdapter.OnPubli
         List<Publication> filteredList = new ArrayList<>();
         try {
             for (Publication publication : publicationList) {
-                if (publication.getTitre().toLowerCase().contains(text.toLowerCase()) ||
-                        publication.getDescription().toLowerCase().contains(text.toLowerCase()) ||
+                if (publication.getDescription().toLowerCase().contains(text.toLowerCase()) ||
                         publication.getType().toLowerCase().contains(text.toLowerCase())) {
                     filteredList.add(publication);
                 }
