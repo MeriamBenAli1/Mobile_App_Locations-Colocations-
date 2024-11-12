@@ -46,7 +46,7 @@ public class ChatFragment extends Fragment {
 
         sendButton.setOnClickListener(v -> sendMessage());
         deleteButton.setOnClickListener(v -> deleteLastMessage());
-        updateButton.setOnClickListener(v -> updateLastMessage());
+       // updateButton.setOnClickListener(v -> updateLastMessage());
 
         // Add a text watcher to search input to filter messages dynamically
         searchInput.addTextChangedListener(new TextWatcher() {
@@ -77,7 +77,7 @@ public class ChatFragment extends Fragment {
 
             lastMessageId = db.insert(MessagesDatabase.TABLE_MESSAGES, null, values);
             if (lastMessageId != -1) {
-                addMessageToView(messageText, lastMessageId, true);
+                addMessageToView(messageText, lastMessageId, true, false);
                 messageInput.setText("");
             } else {
                 Toast.makeText(getActivity(), "Erreur lors de l'envoi du message", Toast.LENGTH_SHORT).show();
@@ -109,7 +109,8 @@ public class ChatFragment extends Fragment {
         while (cursor.moveToNext()) {
             long id = cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
             String messageText = cursor.getString(cursor.getColumnIndexOrThrow(MessagesDatabase.COLUMN_MESSAGE_TEXT));
-            addMessageToView(messageText, id, false);
+            boolean isEdited = messageText.contains("(modifié)");
+            addMessageToView(messageText, id, false, isEdited);
 
             // Store the ID of the last displayed message
             lastMessageId = id;
@@ -117,13 +118,13 @@ public class ChatFragment extends Fragment {
         cursor.close();
     }
 
-    private void addMessageToView(String messageText, long messageId, boolean isOutgoing) {
+    private void addMessageToView(String messageText, long messageId, boolean isOutgoing, boolean isEdited) {
         // Create a layout to hold the message and delete button
         LinearLayout messageLayout = new LinearLayout(getActivity());
         messageLayout.setOrientation(LinearLayout.HORIZONTAL);
 
         TextView messageView = new TextView(getActivity());
-        messageView.setText(messageText);
+        messageView.setText(messageText + (isEdited ? " (modifié)" : ""));
         messageView.setPadding(12, 12, 12, 12);
         messageView.setTextSize(16);
 
@@ -137,74 +138,44 @@ public class ChatFragment extends Fragment {
             messageView.setGravity(View.TEXT_ALIGNMENT_TEXT_START);
         }
 
-        // Add delete button, shown only for the last message
-        ImageButton deleteButton = new ImageButton(getActivity());
-        deleteButton.setImageResource(android.R.drawable.ic_delete);
-        if (messageId == lastMessageId) {
-            deleteButton.setVisibility(View.VISIBLE);
-        } else {
-            deleteButton.setVisibility(View.INVISIBLE);
-        }
-        deleteButton.setOnClickListener(v -> confirmDeleteMessage(messageId));
+        messageView.setOnClickListener(v -> editMessageDialog(messageId, messageView));
 
-        // Add message view and delete button to the layout
-        messageLayout.addView(messageView);
-        messageLayout.addView(deleteButton);
-
-        messagesContainer.addView(messageLayout);
+        messagesContainer.addView(messageView);
     }
 
-    private void updateLastMessage() {
-        if (lastMessageId == -1) {
-            Toast.makeText(getActivity(), "Aucun message à mettre à jour", Toast.LENGTH_SHORT).show();
-            return;
-        }
+    private void editMessageDialog(long messageId, TextView messageView) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Modifier le message");
 
-        String updatedText = messageInput.getText().toString().trim();
-        if (updatedText.isEmpty()) {
-            Toast.makeText(getActivity(), "Veuillez entrer un message pour la mise à jour", Toast.LENGTH_SHORT).show();
-            return;
-        }
+        final EditText input = new EditText(getActivity());
+        input.setText(messageView.getText().toString().replace(" (modifié)", ""));
+        builder.setView(input);
 
+        builder.setPositiveButton("Modifier", (dialog, which) -> {
+            String updatedText = input.getText().toString().trim();
+            if (!updatedText.isEmpty()) {
+                updateMessageInDb(messageId, updatedText + " (modifié)");
+                loadMessages();
+            } else {
+                Toast.makeText(getActivity(), "Le texte ne peut pas être vide", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.setNegativeButton("Annuler", (dialog, which) -> dialog.cancel());
+        builder.show();
+    }
+
+    private void updateMessageInDb(long messageId, String updatedText) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(MessagesDatabase.COLUMN_MESSAGE_TEXT, updatedText);
 
-        int rowsAffected = db.update(MessagesDatabase.TABLE_MESSAGES, values, "_id = ?", new String[]{String.valueOf(lastMessageId)});
+        int rowsAffected = db.update(MessagesDatabase.TABLE_MESSAGES, values, "_id = ?", new String[]{String.valueOf(messageId)});
         if (rowsAffected > 0) {
-            messagesContainer.removeAllViews();
-            loadMessages();
-            messageInput.setText("");
-            Toast.makeText(getActivity(), "Message mis à jour", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Message modifié", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getActivity(), "Erreur lors de la mise à jour du message", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Erreur lors de la modification", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    // Confirmation avant suppression du message
-    private void confirmDeleteMessage(long messageId) {
-        new AlertDialog.Builder(getActivity())
-                .setTitle("Supprimer ce message ?")
-                .setMessage("Voulez-vous vraiment supprimer ce message ?")
-                .setPositiveButton("Oui", (dialog, which) -> deleteMessage(messageId))
-                .setNegativeButton("Non", null)
-                .show();
-    }
-
-    private void deleteMessage(long messageId) {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        int rowsDeleted = db.delete(MessagesDatabase.TABLE_MESSAGES, "_id = ?", new String[]{String.valueOf(messageId)});
-        if (rowsDeleted > 0) {
-            messagesContainer.removeAllViews();
-            loadMessages();
-            Toast.makeText(getActivity(), "Message supprimé", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(getActivity(), "Erreur lors de la suppression du message", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void deleteLastMessage() {
-        deleteMessage(lastMessageId);
     }
 
     private void searchMessages(String query) {
@@ -232,8 +203,31 @@ public class ChatFragment extends Fragment {
         while (cursor.moveToNext()) {
             long id = cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
             String messageText = cursor.getString(cursor.getColumnIndexOrThrow(MessagesDatabase.COLUMN_MESSAGE_TEXT));
-            addMessageToView(messageText, id, false);
+            boolean isEdited = messageText.contains("(modifié)");
+            addMessageToView(messageText, id, false, isEdited);
         }
         cursor.close();
+    }
+
+    private void deleteLastMessage() {
+        if (lastMessageId != -1) {
+            new AlertDialog.Builder(getActivity())
+                    .setTitle("Supprimer le dernier message")
+                    .setMessage("Êtes-vous sûr de vouloir supprimer ce message ?")
+                    .setPositiveButton("Oui", (dialog, which) -> {
+                        SQLiteDatabase db = dbHelper.getWritableDatabase();
+                        int rowsDeleted = db.delete(MessagesDatabase.TABLE_MESSAGES, "_id = ?", new String[]{String.valueOf(lastMessageId)});
+                        if (rowsDeleted > 0) {
+                            Toast.makeText(getActivity(), "Message supprimé", Toast.LENGTH_SHORT).show();
+                            loadMessages();
+                        } else {
+                            Toast.makeText(getActivity(), "Erreur lors de la suppression", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .setNegativeButton("Annuler", null)
+                    .show();
+        } else {
+            Toast.makeText(getActivity(), "Aucun message à supprimer", Toast.LENGTH_SHORT).show();
+        }
     }
 }

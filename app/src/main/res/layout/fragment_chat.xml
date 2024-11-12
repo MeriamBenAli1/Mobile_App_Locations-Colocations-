@@ -123,7 +123,9 @@
             android:layout_weight="1"
             android:layout_marginBottom="10dp"
             android:orientation="vertical"
-            android:scrollbars="vertical" />
+            android:scrollbars="vertical" >
+
+        </LinearLayout>
 
         <!-- Message Input Section -->
         <LinearLayout
@@ -170,16 +172,17 @@
                 android:padding="12dp"
                 android:layout_marginStart="8dp" />
 
-            <!-- Delete button -->
             <ImageButton
                 android:id="@+id/buttonDelete"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/ic_delete"
+                android:layout_marginStart="8dp"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Supprimer le dernier message"
                 android:padding="12dp"
-                android:layout_marginStart="8dp" />
+                android:src="@drawable/ic_delete" />
+
+            <!-- Delete button -->
         </LinearLayout>
 
     </LinearLayout>

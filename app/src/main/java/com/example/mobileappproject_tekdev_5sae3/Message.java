@@ -1,13 +1,16 @@
 package com.example.mobileappproject_tekdev_5sae3;
+
 public class Message {
     private long id;
     private String text;
     private String sender;
+    private boolean isEdited;  // Champ pour indiquer si le message est modifié
 
     public Message(long id, String text, String sender) {
         this.id = id;
         this.text = text;
         this.sender = sender;
+        this.isEdited = false;
     }
 
     // Getters et Setters
@@ -34,5 +37,12 @@ public class Message {
     public void setSender(String sender) {
         this.sender = sender;
     }
-}
 
+    public boolean isEdited() {
+        return isEdited;
+    }
+
+    public void setEdited(boolean edited) {
+        isEdited = edited;
+    }
+}
