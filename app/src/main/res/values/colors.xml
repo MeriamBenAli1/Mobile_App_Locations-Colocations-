@@ -3,9 +3,20 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="toolbar">#6200EE</color> <!-- Change this color as needed -->
-    <color name="button_bg">#6200EE</color> <!-- Button background color -->
+    <color name="button_bg">#0750AD</color> <!-- Button background color -->
     <color name="textView_hint_pro">#B0B0B0</color> <!-- Hint color -->
     <color name="textView_box_select_color">#6200EE</color> <!-- Box stroke color -->
     <color name="textView_hint_layout_pro">#B0B0B0</color> <!-- Hint text color -->
     <color name="editText_pro">#000000</color> <!-- EditText text color -->
+
+    <!-- Colors for the application -->
+    <color name="primaryColor">#26B2EB</color> <!-- Emerald Green -->
+    <color name="secondaryColor">#FF9800</color> <!-- Amber Orange -->
+    <color name="backgroundColor">#FAFAFA</color> <!-- Light Grayish White -->
+    <color name="primaryText">#212121</color> <!-- Charcoal Black -->
+    <color name="secondaryText">#757575</color> <!-- Medium Gray -->
+    <color name="summaryBackground">#E0F7FA</color> <!-- Light Cyan -->
+    <color name="errorColor">#F44336</color> <!-- Red -->
+    <color name="step_unselected_border">#BDBDBD</color>
+
 </resources>
