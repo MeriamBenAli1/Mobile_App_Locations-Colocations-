@@ -69,4 +69,13 @@ public class MainActivity extends AppCompatActivity {
         // Load the default fragment
         getSupportFragmentManager().beginTransaction().replace(R.id.main_content, new HomeFragment()).commit();
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.main_content);
+        if (fragment != null) {
+            fragment.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
 }
