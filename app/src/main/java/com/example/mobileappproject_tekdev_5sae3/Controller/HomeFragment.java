@@ -25,7 +25,8 @@ import com.example.mobileappproject_tekdev_5sae3.database.AppDataBase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment implements PublicationAdapter.OnPublicationDeleteListener {
+public class HomeFragment extends Fragment implements PublicationAdapter.OnPublicationDeleteListener,
+        PublicationAdapter.OnPublicationUpdateListener {
 
     private PublicationDao publicationDao;
     private RecyclerView recyclerView;
@@ -55,7 +56,7 @@ public class HomeFragment extends Fragment implements PublicationAdapter.OnPubli
         AppDataBase db = AppDataBase.getInstance(getActivity());
         publicationDao = db.publicationDao();
         publicationList = publicationDao.getAllPublications();
-        publicationAdapter = new PublicationAdapter(publicationList, publicationDao, this);
+        publicationAdapter = new PublicationAdapter(publicationList, publicationDao, this, this); // Passer le listener update
         recyclerView.setAdapter(publicationAdapter);
 
 
@@ -114,5 +115,13 @@ public class HomeFragment extends Fragment implements PublicationAdapter.OnPubli
             }
         }).start();
     }
-
+    @Override
+    public void onPublicationUpdate(Publication publication) {
+        BlogFragment blogFragment = BlogFragment.newInstance(publication); // Passer la publication
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frame_layout, blogFragment)
+                .addToBackStack(null)
+                .commit();
+    }
 }

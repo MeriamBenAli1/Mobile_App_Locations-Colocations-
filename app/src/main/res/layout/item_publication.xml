@@ -70,7 +70,7 @@
             android:textColor="@android:color/black" />
 
         <ImageButton
-            android:id="@+id/buttonComment"
+            android:id="@+id/buttonUpdate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

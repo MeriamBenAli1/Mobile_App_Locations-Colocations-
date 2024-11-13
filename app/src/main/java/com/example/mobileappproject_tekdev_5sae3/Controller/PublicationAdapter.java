@@ -24,11 +24,16 @@ public class PublicationAdapter extends RecyclerView.Adapter<PublicationAdapter.
     private List<Publication> publications;
     private PublicationDao publicationDao;
     private OnPublicationDeleteListener deleteListener;
+    private OnPublicationUpdateListener updateListener;
 
-    public PublicationAdapter(List<Publication> publications, PublicationDao publicationDao, OnPublicationDeleteListener deleteListener) {
+    public PublicationAdapter(List<Publication> publications,
+                              PublicationDao publicationDao,
+                              OnPublicationDeleteListener deleteListener,
+                              OnPublicationUpdateListener updateListener) {
         this.publications = publications;
         this.publicationDao = publicationDao;
         this.deleteListener = deleteListener;
+        this.updateListener = updateListener;
 
     }
     public void updateList(List<Publication> newPublications) {
@@ -71,6 +76,8 @@ public class PublicationAdapter extends RecyclerView.Adapter<PublicationAdapter.
             // Mise à jour dans la base de données
             new Thread(() -> publicationDao.updateLikeCount(publication.getId(), newLikeCount)).start();
         });
+        holder.buttonUpdate.setOnClickListener(v ->
+                updateListener.onPublicationUpdate(publication));
 
     }
 
@@ -88,13 +95,15 @@ public class PublicationAdapter extends RecyclerView.Adapter<PublicationAdapter.
         void onPublicationDelete(Publication publication);
     }
 
-
+    public interface OnPublicationUpdateListener {
+        void onPublicationUpdate(Publication publication);
+    }
     public static class PublicationViewHolder extends RecyclerView.ViewHolder {
         TextView titreTextView;
         TextView descriptionTextView;
         TextView typeTextView;
         ImageButton buttonLike;
-        ImageButton buttonComment;
+        ImageButton buttonUpdate;
         ImageButton deleteButton;
         TextView dateTextView;
         ImageView imageView;
@@ -106,7 +115,7 @@ public class PublicationAdapter extends RecyclerView.Adapter<PublicationAdapter.
             dateTextView = itemView.findViewById(R.id.dateTextView);
             deleteButton = itemView.findViewById(R.id.deleteButton);
             buttonLike = itemView.findViewById(R.id.buttonLike);
-            buttonComment = itemView.findViewById(R.id.buttonComment);
+            buttonUpdate = itemView.findViewById(R.id.buttonUpdate);
             likeCountTextView = itemView.findViewById(R.id.likeCountTextView);
 
             imageView = itemView.findViewById(R.id.imageView);
