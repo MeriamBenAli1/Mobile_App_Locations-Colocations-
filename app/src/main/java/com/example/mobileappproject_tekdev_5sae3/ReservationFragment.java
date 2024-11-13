@@ -84,7 +84,7 @@ public class ReservationFragment extends Fragment {
         });
 
     }
-        // Method to set arguments when initializing the fragment
+    // Method to set arguments when initializing the fragment
     public static ReservationFragment newInstance(String firstName, String lastName, String email, String phone, String date, int guests, int duration, String durationType, double totalPrice, String paymentMethod) {
         ReservationFragment fragment = new ReservationFragment();
         Bundle args = new Bundle();

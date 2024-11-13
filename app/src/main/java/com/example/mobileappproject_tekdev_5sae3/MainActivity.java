@@ -41,5 +41,17 @@ public class MainActivity extends AppCompatActivity {
                 transaction.commit();
             }
         });
+        Button btnOpenHistory = findViewById(R.id.btn_history);
+        btnOpenHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ReservationHistoryFragment historyFragment = new ReservationHistoryFragment();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, historyFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
     }
+
 }

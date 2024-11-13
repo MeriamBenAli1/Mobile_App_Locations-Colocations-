@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditReservationFragment">
+
+    <!-- Formulaire pour éditer une réservation -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:weightSum="1">
+
+        <!-- Téléphone de la réservation -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Numéro de téléphone"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editTextPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Entrez le numéro de téléphone"
+            android:inputType="phone" />
+
+        <!-- Date de la réservation -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date de la réservation"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editTextDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Entrez la date de la réservation"
+            android:inputType="date" />
+
+        <!-- Nombre d'invités -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre d'invités"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editTextGuests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Entrez le nombre d'invités"
+            android:inputType="number" />
+
+        <!-- Durée de la réservation -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Durée de la réservation (en jours)"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editTextDuration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Entrez la durée"
+            android:inputType="number" />
+
+        <!-- Type de durée (ex: nuit, semaine, mois) -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Type de durée"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editTextDurationType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Entrez le type de durée"
+            android:inputType="text" />
+
+        <!-- Bouton de sauvegarde -->
+        <Button
+            android:id="@+id/btnSaveReservation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Sauvegarder les modifications"
+            android:backgroundTint="@color/primaryColor"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp" />
+
+    </LinearLayout>
+
+</FrameLayout>

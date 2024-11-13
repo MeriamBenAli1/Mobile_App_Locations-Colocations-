@@ -1,18 +1,21 @@
-<androidx.constraintlayout.widget.ConstraintLayout
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".ReservationFragment">
+
     <!-- TopBar / Toolbar -->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar_payment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/primaryColor"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:layout_constraintTop_toTopOf="parent">
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
         <TextView
             android:layout_width="wrap_content"
@@ -31,8 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_payment">
+        android:orientation="horizontal">
 
         <!-- Step 1 (Checked) -->
         <TextView
@@ -81,12 +83,11 @@
         android:id="@+id/summaryLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:background="@color/summaryBackground"
         android:elevation="4dp"
         android:orientation="vertical"
-        android:padding="16dp"
-        app:layout_constraintTop_toBottomOf="@id/stepperLayout">
+        android:padding="16dp">
 
         <TextView
             android:id="@+id/reservationDates"
@@ -130,13 +131,13 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@id/summaryLayout"
-        app:layout_constraintBottom_toTopOf="@id/nextStepButton">
+        android:layout_weight="1"
+        android:fillViewport="true">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:padding="16dp">
 
             <!-- Full Name -->
@@ -148,10 +149,7 @@
                 android:layout_marginTop="10dp"
                 android:hint="Full Name"
                 app:boxStrokeColor="@color/textView_box_select_color"
-                app:hintTextColor="@color/textView_hint_layout_pro"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:hintTextColor="@color/textView_hint_layout_pro">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editText_name_event_booking"
@@ -169,10 +167,7 @@
                 android:layout_marginTop="10dp"
                 android:hint="First Name"
                 app:boxStrokeColor="@color/textView_box_select_color"
-                app:hintTextColor="@color/textView_hint_layout_pro"
-                app:layout_constraintTop_toBottomOf="@id/textInput_name_event_booking"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:hintTextColor="@color/textView_hint_layout_pro">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editText_firstName_event_booking"
@@ -190,10 +185,7 @@
                 android:layout_marginTop="10dp"
                 android:hint="Last Name"
                 app:boxStrokeColor="@color/textView_box_select_color"
-                app:hintTextColor="@color/textView_hint_layout_pro"
-                app:layout_constraintTop_toBottomOf="@id/textInput_firstName_event_booking"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:hintTextColor="@color/textView_hint_layout_pro">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editText_lastName_event_booking"
@@ -211,10 +203,7 @@
                 android:layout_marginTop="10dp"
                 android:hint="Email"
                 app:boxStrokeColor="@color/textView_box_select_color"
-                app:hintTextColor="@color/textView_hint_layout_pro"
-                app:layout_constraintTop_toBottomOf="@id/textInput_lastName_event_booking"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:hintTextColor="@color/textView_hint_layout_pro">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editText_email_event_booking"
@@ -233,10 +222,7 @@
                 android:layout_marginTop="10dp"
                 android:hint="Phone Number"
                 app:boxStrokeColor="@color/textView_box_select_color"
-                app:hintTextColor="@color/textView_hint_layout_pro"
-                app:layout_constraintTop_toBottomOf="@id/textInput_email_event_booking"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:hintTextColor="@color/textView_hint_layout_pro">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editText_phoneNumber_event_booking"
@@ -245,8 +231,7 @@
                     android:inputType="phone"
                     android:textColor="@color/editText_pro" />
             </com.google.android.material.textfield.TextInputLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
     </ScrollView>
 
     <!-- Next Step Button -->
@@ -258,8 +243,5 @@
         android:layout_marginBottom="16dp"
         android:text="Next Step"
         android:textColor="@color/white"
-        android:backgroundTint="@color/primaryColor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:backgroundTint="@color/primaryColor" />
+</LinearLayout>
